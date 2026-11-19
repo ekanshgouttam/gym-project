@@ -24,20 +24,26 @@ class MarketingSiteTest extends TestCase
     {
         Gym::create(['name' => 'Power House', 'slug' => 'power-house', 'city' => 'Pune']);
 
-        foreach (['home', 'features', 'how-it-works', 'pricing', 'about', 'demo', 'gyms', 'register', 'login'] as $name) {
+        foreach (['flexfit', 'features', 'how-it-works', 'pricing', 'about', 'demo', 'gyms', 'register', 'login'] as $name) {
             $this->get(route($name))->assertOk()->assertSee(route('register'), false)->assertSee(route('login'), false);
         }
 
+        $this->assertSame(url('/flexfit/pricing'), route('pricing'));
         $this->get(route('pricing'))->assertSee('Starter')->assertSee('₹999');
-        $this->get(route('home'))->assertSee('Power House');
+        $this->get(route('flexfit'))->assertSee('Power House');
     }
 
-    public function test_old_single_gym_urls_redirect()
+    public function test_old_urls_redirect()
     {
-        $this->get('/services')->assertRedirect('/features');
-        $this->get('/membership-plans')->assertRedirect('/pricing');
-        $this->get('/trainers')->assertRedirect('/gyms');
-        $this->get('/contact')->assertRedirect('/book-a-demo');
+        // FlexFit pages moved under /flexfit when "/" became the gym website.
+        $this->get('/features')->assertRedirect('/flexfit/features');
+        $this->get('/pricing')->assertRedirect('/flexfit/pricing');
+        $this->get('/book-a-demo')->assertRedirect('/flexfit/book-a-demo');
+        // Old single-gym pages point at sections of the gym website.
+        $this->get('/services')->assertRedirect('/#programs');
+        $this->get('/membership-plans')->assertRedirect('/#pricing');
+        $this->get('/trainers')->assertRedirect('/#trainers');
+        $this->get('/contact')->assertRedirect('/#contact');
         $this->get('/join')->assertRedirect('/gyms');
     }
 

@@ -17,29 +17,37 @@ use App\Http\Controllers\SuperAdmin;
 use App\Http\Controllers\Member;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\RazorpayWebhookController;
+use App\Http\Controllers\SiteController;
 use App\Support\Roles;
 use Illuminate\Support\Facades\Route;
 
-/* ---------- Public website ---------- */
-Route::get('/', [PageController::class, 'home'])->name('home');
-Route::get('features', [PageController::class, 'features'])->name('features');
-Route::get('how-it-works', [PageController::class, 'howItWorks'])->name('how-it-works');
-Route::get('pricing', [PageController::class, 'pricing'])->name('pricing');
-Route::get('about', [PageController::class, 'about'])->name('about');
-Route::get('book-a-demo', [PageController::class, 'demo'])->name('demo');
-Route::post('book-a-demo', [PageController::class, 'storeDemo'])->middleware('throttle:5,10')->name('demo.store');
+/* ---------- Gym website (homepage) ---------- */
+Route::get('/', [SiteController::class, 'home'])->name('home');
+Route::post('enquire', [SiteController::class, 'enquire'])->middleware('throttle:6,10')->name('site.enquire');
+Route::get('site-media/{gym}/{file}', [MediaController::class, 'siteMedia'])->where('file', '[A-Za-z0-9_\-]+\.(webp|jpg|png|mp4)')->name('site.media');
+
+/* ---------- FlexFit SaaS website ---------- */
+Route::prefix('flexfit')->group(function () {
+    Route::get('/', [PageController::class, 'home'])->name('flexfit');
+    Route::get('features', [PageController::class, 'features'])->name('features');
+    Route::get('how-it-works', [PageController::class, 'howItWorks'])->name('how-it-works');
+    Route::get('pricing', [PageController::class, 'pricing'])->name('pricing');
+    Route::get('about', [PageController::class, 'about'])->name('about');
+    Route::get('book-a-demo', [PageController::class, 'demo'])->name('demo');
+    Route::post('book-a-demo', [PageController::class, 'storeDemo'])->middleware('throttle:5,10')->name('demo.store');
+});
+foreach (['features', 'how-it-works', 'pricing', 'about', 'book-a-demo'] as $old) {
+    Route::permanentRedirect($old, "/flexfit/{$old}");
+}
 
 /* ---------- Public gym pages ---------- */
 Route::get('gyms', [PageController::class, 'gyms'])->name('gyms');
 Route::get('gyms/{gym:slug}', [PageController::class, 'gym'])->name('gyms.show');
 
-/* Old single-gym website URLs now point at their FlexFit equivalents. */
-Route::permanentRedirect('services', '/features');
-Route::permanentRedirect('membership-plans', '/pricing');
-Route::permanentRedirect('trainers', '/gyms');
-Route::permanentRedirect('facilities', '/gyms');
-Route::permanentRedirect('gallery', '/gyms');
-Route::permanentRedirect('contact', '/book-a-demo');
+/* Old single-gym website URLs → sections of the gym website. */
+foreach (['services' => 'programs', 'membership-plans' => 'pricing', 'trainers' => 'trainers', 'facilities' => 'gallery', 'gallery' => 'gallery', 'contact' => 'contact'] as $old => $anchor) {
+    Route::permanentRedirect($old, "/#{$anchor}");
+}
 
 /* ---------- Join (QR registration) ---------- */
 Route::redirect('join', '/gyms')->name('join');

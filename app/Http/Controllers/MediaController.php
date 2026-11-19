@@ -30,6 +30,21 @@ class MediaController extends Controller
         return $this->stream($gym->logo_path, 'public, max-age=86400');
     }
 
+    /** Website photos and video the gym owner uploaded (public by design). */
+    public function siteMedia(Gym $gym, string $file)
+    {
+        $path = "site/{$gym->id}/" . basename($file);
+        abort_unless(Storage::disk('local')->exists($path), 404);
+        $types = ['webp' => 'image/webp', 'jpg' => 'image/jpeg', 'png' => 'image/png', 'mp4' => 'video/mp4'];
+
+        // Range-capable response so browsers can stream video.
+        return response()->file(Storage::disk('local')->path($path), [
+            'Content-Type' => $types[pathinfo($path, PATHINFO_EXTENSION)] ?? 'application/octet-stream',
+            'Cache-Control' => 'public, max-age=604800',
+            'X-Content-Type-Options' => 'nosniff',
+        ]);
+    }
+
     public function scan(Request $request, BodyScan $scan, string $view)
     {
         abort_unless($this->canSee($request->user(), $scan->user), 404);

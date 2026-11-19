@@ -5,13 +5,33 @@ module.exports = {
         './resources/views/**/*.blade.php',
         './resources/js/**/*.js',
     ],
+    // Grid classes the gym website builds from data counts.
+    safelist: ['xl:grid-cols-2', 'xl:grid-cols-3', 'xl:grid-cols-4', 'lg:col-span-3', 'lg:col-span-4', 'lg:col-span-7'],
     theme: {
         extend: {
             fontFamily: {
                 sans: ['Inter', ...defaultTheme.fontFamily.sans],
                 display: ['"Space Grotesk"', ...defaultTheme.fontFamily.sans],
+                // Gym website (resources/views/site): condensed, poster-style headlines.
+                brand: ['Anton', 'Impact', '"Arial Narrow"', ...defaultTheme.fontFamily.sans],
             },
             colors: {
+                // Gym website palette: deep black / charcoal with an electric orange-red accent.
+                coal: {
+                    950: '#050505',
+                    900: '#0B0B0C',
+                    850: '#111113',
+                    800: '#18181B',
+                    700: '#242428',
+                    600: '#34343A',
+                    500: '#5B5B63',
+                },
+                blaze: {
+                    300: '#FF8E61',
+                    400: '#FF6B2E',
+                    500: '#FF4D12',
+                    600: '#D63B05',
+                },
                 ink: {
                     950: '#080B11',
                     900: '#151A23',

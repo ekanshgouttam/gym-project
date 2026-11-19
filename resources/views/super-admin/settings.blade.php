@@ -29,6 +29,19 @@
             </div>
         </section>
 
+        <section class="card space-y-4 p-6" data-intro>
+            <h2 class="text-base font-semibold">Homepage website</h2>
+            <p class="text-sm text-slate-400">The premium website at <a href="{{ route('home') }}" target="_blank" rel="noopener" class="font-mono text-xs text-volt-400">{{ url('/') }}</a> shows one gym: its name, trainers, plans, contact details and uploaded media. Its enquiries go to that gym's owner.</p>
+            <div class="max-w-sm">
+                <label for="site_gym" class="label">Website gym</label>
+                <select id="site_gym" name="site_gym" class="input">
+                    <option value="">First gym ({{ optional($gyms->sortBy('id')->first())->name }})</option>
+                    @foreach ($gyms as $g)<option value="{{ $g->id }}" {{ (int) old('site_gym', $settings['site_gym']) === $g->id ? 'selected' : '' }}>{{ $g->name }}</option>@endforeach
+                </select>
+                @error('site_gym') <p class="field-error">{{ $message }}</p> @enderror
+            </div>
+        </section>
+
         <section class="card space-y-5 p-6" data-intro>
             <h2 class="text-base font-semibold">AI body scans</h2>
             <p class="text-sm text-slate-400">

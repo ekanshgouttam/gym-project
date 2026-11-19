@@ -21,7 +21,7 @@
     },
     "dependencies": {
         "apexcharts": "^3.54.1",
-        "gsap": "^3.12.5",
+        "gsap": "3.13.0",
         "three": "^0.160.1"
     }
 }

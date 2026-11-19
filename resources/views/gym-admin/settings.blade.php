@@ -44,6 +44,69 @@
             <p class="text-xs text-slate-500">Reminders go out every morning at 9:00 as in-app notifications.</p>
         </section>
 
+        @php
+            $media = $gym->setting('site_media') ?: [];
+            $isSiteGym = optional(\App\Http\Controllers\SiteController::gym())->id === $gym->id;
+        @endphp
+        <section class="card space-y-5 p-6" data-intro>
+            <div class="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                    <h2 class="text-base font-semibold">Website</h2>
+                    <p class="mt-1 text-sm text-slate-400">
+                        @if ($isSiteGym)
+                            Your photos and video replace the default ones on the <a href="{{ route('home') }}" target="_blank" rel="noopener" class="text-volt-400">gym website</a>.
+                        @else
+                            Saved for your gym. They appear on the premium website when FlexFit sets it to show your gym.
+                        @endif
+                    </p>
+                </div>
+                @if ($isSiteGym)<a href="{{ route('home') }}" target="_blank" rel="noopener" class="btn-ghost">View website</a>@endif
+            </div>
+
+            <div class="grid gap-5 sm:grid-cols-2">
+                <div>
+                    <label for="hero_video" class="label">Hero video <span class="text-slate-500">(MP4, up to 25 MB)</span></label>
+                    <input id="hero_video" name="hero_video" type="file" accept="video/mp4" data-max-mb="25" class="block w-full text-sm text-slate-400 file:mr-3 file:rounded-lg file:border-0 file:bg-ink-700 file:px-3 file:py-2 file:text-sm file:text-white">
+                    <p class="mt-1 text-xs text-slate-500">10–20 seconds, landscape, no sound needed. It plays muted in a loop and is shown in black and white.</p>
+                    @error('hero_video')<p class="field-error">{{ $message }}</p>@enderror
+                    @if (! empty($media['hero_video']))
+                        <div class="mt-3 flex items-center gap-3">
+                            <video src="{{ route('site.media', [$gym, $media['hero_video']]) }}" class="h-16 w-28 rounded-lg object-cover" muted preload="metadata"></video>
+                            <label class="flex items-center gap-2 text-xs text-slate-400"><input type="checkbox" name="remove_hero_video" value="1" class="rounded border-ink-600 bg-ink-850 text-volt-500"> Remove</label>
+                        </div>
+                    @endif
+                </div>
+                <div>
+                    <label for="hero_image" class="label">Hero photo <span class="text-slate-500">(shown before the video loads)</span></label>
+                    <input id="hero_image" name="hero_image" type="file" accept="image/jpeg,image/png,image/webp" data-max-mb="10" class="block w-full text-sm text-slate-400 file:mr-3 file:rounded-lg file:border-0 file:bg-ink-700 file:px-3 file:py-2 file:text-sm file:text-white">
+                    @error('hero_image')<p class="field-error">{{ $message }}</p>@enderror
+                    @if (! empty($media['hero_image']))
+                        <div class="mt-3 flex items-center gap-3">
+                            <img src="{{ route('site.media', [$gym, $media['hero_image']]) }}" alt="" class="h-16 w-28 rounded-lg object-cover">
+                            <label class="flex items-center gap-2 text-xs text-slate-400"><input type="checkbox" name="remove_hero_image" value="1" class="rounded border-ink-600 bg-ink-850 text-volt-500"> Remove</label>
+                        </div>
+                    @endif
+                </div>
+            </div>
+
+            <div>
+                <label for="gallery" class="label">Gallery photos <span class="text-slate-500">(up to 9, shown first in the gallery)</span></label>
+                <input id="gallery" name="gallery[]" type="file" multiple accept="image/jpeg,image/png,image/webp" class="block w-full text-sm text-slate-400 file:mr-3 file:rounded-lg file:border-0 file:bg-ink-700 file:px-3 file:py-2 file:text-sm file:text-white">
+                @error('gallery')<p class="field-error">{{ $message }}</p>@enderror
+                @error('gallery.*')<p class="field-error">{{ $message }}</p>@enderror
+                @if (! empty($media['gallery']))
+                    <ul class="mt-3 grid grid-cols-3 gap-3 sm:grid-cols-5">
+                        @foreach ($media['gallery'] as $file)
+                            <li>
+                                <img src="{{ route('site.media', [$gym, $file]) }}" alt="" class="aspect-square w-full rounded-lg object-cover">
+                                <label class="mt-1 flex items-center gap-1.5 text-xs text-slate-400"><input type="checkbox" name="remove_gallery[]" value="{{ $file }}" class="rounded border-ink-600 bg-ink-850 text-volt-500"> Remove</label>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+        </section>
+
         <div class="flex justify-end"><button type="submit" class="btn-primary">Save settings</button></div>
     </form>
 </x-app-layout>

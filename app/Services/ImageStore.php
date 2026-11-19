@@ -83,6 +83,38 @@ class ImageStore
         return $path;
     }
 
+    /**
+     * Website photo uploaded by a gym owner: re-encoded as WebP (strips metadata), max 1920px,
+     * saved under site/{gymId}/. Returns the file name (served by the site.media route).
+     */
+    public function storeSiteImage(UploadedFile $file, int $gymId, string $field): string
+    {
+        $source = $this->decode($file, $field);
+        $width = imagesx($source);
+        $height = imagesy($source);
+        $scale = min(1, 1920 / max($width, $height));
+        $canvas = imagecreatetruecolor(max(1, (int) round($width * $scale)), max(1, (int) round($height * $scale)));
+        imagecopyresampled($canvas, $source, 0, 0, 0, 0, imagesx($canvas), imagesy($canvas), $width, $height);
+        imagedestroy($source);
+
+        ob_start();
+        imagewebp($canvas, null, 72);
+        $webp = ob_get_clean();
+        imagedestroy($canvas);
+
+        $name = Str::random(20) . '.webp';
+        Storage::disk('local')->put("site/{$gymId}/{$name}", $webp);
+
+        return $name;
+    }
+
+    public function deleteSiteFile(int $gymId, ?string $name): void
+    {
+        if ($name) {
+            Storage::disk('local')->delete("site/{$gymId}/" . basename($name));
+        }
+    }
+
     public function delete(?string $path): void
     {
         if ($path) {

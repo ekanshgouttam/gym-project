@@ -24,6 +24,7 @@ class PlatformSetting extends Model
         'ai_scans_enabled' => ['type' => 'bool', 'value' => true],
         'ai_monthly_budget_usd' => ['type' => 'float', 'value' => 100],
         'usd_to_inr' => ['type' => 'float', 'value' => 84],
+        'site_gym' => ['type' => 'int', 'value' => 0], // id of the gym shown on the homepage website; 0 = first active gym
     ];
 
     private const CACHE_KEY = 'platform_settings';
