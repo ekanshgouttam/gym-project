@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html { -webkit-tap-highlight-color: transparent; color-scheme: dark; }
+    body { @apply bg-ink-950 text-slate-200 font-sans antialiased; }
+    h1, h2, h3, h4 { @apply font-display tracking-tight text-white; }
+    ::selection { @apply bg-volt-400 text-ink-950; }
+}
+
+@layer components {
+    .btn { @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-volt-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 disabled:opacity-50; }
+    .btn-primary { @apply btn bg-volt-400 text-ink-950 hover:bg-volt-300 shadow-glow; }
+    .btn-ghost { @apply btn border border-ink-600 text-slate-200 hover:border-slate-400 hover:text-white; }
+    .btn-danger { @apply btn border border-rose-500/40 text-rose-300 hover:bg-rose-500/10; }
+
+    .card { @apply rounded-2xl border border-white/[.06] bg-ink-900/75 backdrop-blur-xl; }
+    .btn-accent { @apply btn bg-ember-500 text-white hover:bg-ember-400; }
+
+    .label { @apply mb-1.5 block text-sm font-medium text-slate-300; }
+    .input { @apply block w-full rounded-xl border-ink-600 bg-ink-850 text-white placeholder-slate-500 focus:border-volt-400 focus:ring-volt-400; }
+    .field-error { @apply mt-1.5 text-sm text-rose-400; }
+
+    .badge { @apply inline-flex items-center whitespace-nowrap rounded-full px-2.5 py-0.5 text-xs font-medium; }
+
+    .nav-link { @apply flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium text-slate-400 transition hover:bg-ink-800 hover:text-white; }
+    .nav-link.active { @apply bg-volt-400/10 text-volt-400; }
+
+    .table-head { @apply px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-500; }
+    .table-cell { @apply px-4 py-3 text-sm; }
+}
+
+.grid-bg {
+    background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+}
