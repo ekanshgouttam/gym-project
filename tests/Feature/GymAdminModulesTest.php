@@ -155,8 +155,12 @@ class GymAdminModulesTest extends TestCase
         $visit = Attendance::firstOrFail();
         $this->assertSame('desk', $visit->method);
 
+        // The day's list shows the visit with the member's name and Member ID (regression: Attendance::user relation).
+        $this->get(route('gym-admin.attendance.index'))->assertOk()->assertSee($member->name)->assertSee($member->memberProfile->member_code);
+
         $this->post(route('gym-admin.attendance.check-out', $visit))->assertRedirect();
         $this->assertNotNull($visit->fresh()->checked_out_at);
+        $this->get(route('gym-admin.attendance.index'))->assertOk()->assertSee('min)');
 
         $foreign = $this->user(Roles::MEMBER, Gym::create(['name' => 'Beta', 'slug' => 'beta']));
         $this->post(route('gym-admin.attendance.check-in', $foreign))->assertNotFound();

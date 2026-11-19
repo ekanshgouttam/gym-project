@@ -10,6 +10,12 @@ class Attendance extends Model
 
     protected $casts = ['checked_in_at' => 'datetime', 'checked_out_at' => 'datetime'];
 
+    /** The member who visited. */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function gym()
     {
         return $this->belongsTo(Gym::class);
