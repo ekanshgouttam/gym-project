@@ -1,2 +1,182 @@
-/*! For license information please see join.js.LICENSE.txt */
-"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[507],{723:(e,t,n)=>{function r(){var e,t,n="function"==typeof Symbol?Symbol:{},a=n.iterator||"@@iterator",c=n.toStringTag||"@@toStringTag";function i(n,r,a,c){var i=r&&r.prototype instanceof s?r:s,l=Object.create(i.prototype);return o(l,"_invoke",function(n,r,o){var a,c,i,s=0,l=o||[],d=!1,f={p:0,n:0,v:e,a:p,f:p.bind(e,4),d:function(t,n){return a=t,c=0,i=e,f.n=n,u}};function p(n,r){for(c=n,i=r,t=0;!d&&s&&!o&&t<l.length;t++){var o,a=l[t],p=f.p,v=a[2];n>3?(o=v===r)&&(i=a[(c=a[4])?5:(c=3,3)],a[4]=a[5]=e):a[0]<=p&&((o=n<2&&p<a[1])?(c=0,f.v=r,f.n=a[1]):p<v&&(o=n<3||a[0]>r||r>v)&&(a[4]=n,a[5]=r,f.n=v,c=0))}if(o||n>1)return u;throw d=!0,r}return function(o,l,v){if(s>1)throw TypeError("Generator is already running");for(d&&1===l&&p(l,v),c=l,i=v;(t=c<2?e:i)||!d;){a||(c?(c>1&&(f.n=c<3?-1:i),p(c,i)):f.v=i);try{if(s=2,a){if(c||(o="next"),t=a[o]){if(!(t=t.call(a,i)))throw TypeError("iterator result is not an object");if(!t.done)return t;i=t.value,c<2&&(c=0)}else 1===c&&(t=a.return)&&t.call(a),c<2&&(i=TypeError("The iterator does not provide a '"+o+"' method"),c=1);a=e}else if((t=(d=f.n<0)?i:n.call(r,f))!==u)break}catch(t){a=e,c=1,i=t}finally{s=1}}return{value:t,done:d}}}(n,a,c),!0),l}var u={};function s(){}function l(){}function d(){}t=Object.getPrototypeOf;var f=[][a]?t(t([][a]())):(o(t={},a,function(){return this}),t),p=d.prototype=s.prototype=Object.create(f);function v(e){return Object.setPrototypeOf?Object.setPrototypeOf(e,d):(e.__proto__=d,o(e,c,"GeneratorFunction")),e.prototype=Object.create(p),e}return l.prototype=d,o(p,"constructor",d),o(d,"constructor",l),l.displayName="GeneratorFunction",o(d,c,"GeneratorFunction"),o(p),o(p,c,"Generator"),o(p,a,function(){return this}),o(p,"toString",function(){return"[object Generator]"}),(r=function(){return{w:i,m:v}})()}function o(e,t,n,r){var a=Object.defineProperty;try{a({},"",{})}catch(e){a=0}o=function(e,t,n,r){function c(t,n){o(e,t,function(e){return this._invoke(t,n,e)})}t?a?a(e,t,{value:n,enumerable:!r,configurable:!r,writable:!r}):e[t]=n:(c("next",0),c("throw",1),c("return",2))},o(e,t,n,r)}function a(e,t,n,r,o,a,c){try{var i=e[a](c),u=i.value}catch(e){return void n(e)}i.done?t(u):Promise.resolve(u).then(r,o)}function c(e){return function(){var t=this,n=arguments;return new Promise(function(r,o){var c=e.apply(t,n);function i(e){a(c,r,o,i,u,"next",e)}function u(e){a(c,r,o,i,u,"throw",e)}i(void 0)})}}function i(e){var t=document.querySelector('meta[name="csrf-token"]').content,n=e.querySelector("#phone"),o=e.querySelector("[data-otp-send]"),a=e.querySelector("[data-otp-code]"),i=e.querySelector("#otp"),u=e.querySelector("[data-otp-verify]"),s=e.querySelector("[data-otp-msg]"),l=e.querySelector("[data-join-details]"),d=e.querySelector("[data-otp-verified]"),f=null,p=function(e){var t=arguments.length>1&&void 0!==arguments[1]&&arguments[1];s.textContent=e,s.className="mt-2 text-sm "+(t?"text-rose-400":"text-volt-300")};function v(e,t){return h.apply(this,arguments)}function h(){return(h=c(r().m(function e(n,o){var a,c,i;return r().w(function(e){for(;;)switch(e.n){case 0:return e.n=1,fetch(n,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json","X-CSRF-TOKEN":t},body:JSON.stringify(o)});case 1:return a=e.v,e.n=2,a.json().catch(function(){return{}});case 2:if(c=e.v,a.ok){e.n=3;break}throw i=c.errors?Object.values(c.errors)[0][0]:c.message,new Error(429===a.status?"Too many attempts. Please wait a few minutes.":i||"Something went wrong.");case 3:return e.a(2,c)}},e)}))).apply(this,arguments)}function y(e){clearInterval(f);var t=e;o.disabled=!0,o.textContent="Resend in ".concat(t,"s"),f=setInterval(function(){(t-=1)<=0?(clearInterval(f),o.disabled=!1,o.textContent="Resend code"):o.textContent="Resend in ".concat(t,"s")},1e3)}function m(e){n.readOnly=!0,o.classList.add("hidden"),a.classList.add("hidden"),d.classList.remove("hidden"),l.classList.remove("hidden"),l.querySelectorAll("input, select, textarea, button").forEach(function(e){e.disabled=!1}),e&&(n.value=e.replace(/^\+91/,"")),s.textContent=""}null==o||o.addEventListener("click",c(r().m(function t(){var c,u;return r().w(function(t){for(;;)switch(t.p=t.n){case 0:return o.disabled=!0,t.p=1,t.n=2,v(e.dataset.sendUrl,{phone:n.value});case 2:c=t.v,a.classList.remove("hidden"),p(c.message),i.focus(),y(c.resend_after||30),t.n=4;break;case 3:t.p=3,u=t.v,p(u.message,!0),o.disabled=!1;case 4:return t.a(2)}},t,null,[[1,3]])}))),null==u||u.addEventListener("click",c(r().m(function t(){var o;return r().w(function(t){for(;;)switch(t.p=t.n){case 0:return u.disabled=!0,t.p=1,t.n=2,v(e.dataset.verifyUrl,{phone:n.value,code:i.value});case 2:m(t.v.phone),t.n=4;break;case 3:t.p=3,o=t.v,p(o.message,!0);case 4:return t.p=4,u.disabled=!1,t.f(4);case 5:return t.a(2)}},t,null,[[1,3,4,5]])}))),null==i||i.addEventListener("input",function(){i.value=i.value.replace(/\D/g,"").slice(0,6),6===i.value.length&&u.click()}),"1"===e.dataset.verified&&m(),e.querySelectorAll('input[name="membership_plan_id"]').forEach(function(t){t.addEventListener("change",function(){e.querySelectorAll("[data-plan-card]").forEach(function(e){return e.classList.remove("ring-2","ring-volt-400")}),t.closest("[data-plan-card]").classList.add("ring-2","ring-volt-400")}),t.checked&&t.closest("[data-plan-card]").classList.add("ring-2","ring-volt-400")})}n.r(t),n.d(t,{default:()=>i})}}]);
+"use strict";
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["join"],{
+
+/***/ "./resources/js/join.js":
+/*!******************************!*\
+  !*** ./resources/js/join.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ mountJoin)
+/* harmony export */ });
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? (c > 1 && (G.n = c < 3 ? -1 : u), d(c, u)) : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+// QR registration: mobile OTP step, then unlock the rest of the form.
+function mountJoin(root) {
+  var csrf = document.querySelector('meta[name="csrf-token"]').content;
+  var phone = root.querySelector('#phone');
+  var sendBtn = root.querySelector('[data-otp-send]');
+  var codeWrap = root.querySelector('[data-otp-code]');
+  var code = root.querySelector('#otp');
+  var verifyBtn = root.querySelector('[data-otp-verify]');
+  var msg = root.querySelector('[data-otp-msg]');
+  var details = root.querySelector('[data-join-details]');
+  var verifiedBadge = root.querySelector('[data-otp-verified]');
+  var cooldownTimer = null;
+  var say = function say(text) {
+    var isError = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    msg.textContent = text;
+    msg.className = 'mt-2 text-sm ' + (isError ? 'text-rose-400' : 'text-volt-300');
+  };
+  function post(_x, _x2) {
+    return _post.apply(this, arguments);
+  }
+  function _post() {
+    _post = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(url, body) {
+      var res, data, first;
+      return _regenerator().w(function (_context3) {
+        while (1) switch (_context3.n) {
+          case 0:
+            _context3.n = 1;
+            return fetch(url, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                'X-CSRF-TOKEN': csrf
+              },
+              body: JSON.stringify(body)
+            });
+          case 1:
+            res = _context3.v;
+            _context3.n = 2;
+            return res.json()["catch"](function () {
+              return {};
+            });
+          case 2:
+            data = _context3.v;
+            if (res.ok) {
+              _context3.n = 3;
+              break;
+            }
+            first = data.errors ? Object.values(data.errors)[0][0] : data.message;
+            throw new Error(res.status === 429 ? 'Too many attempts. Please wait a few minutes.' : first || 'Something went wrong.');
+          case 3:
+            return _context3.a(2, data);
+        }
+      }, _callee3);
+    }));
+    return _post.apply(this, arguments);
+  }
+  function cooldown(seconds) {
+    clearInterval(cooldownTimer);
+    var left = seconds;
+    sendBtn.disabled = true;
+    sendBtn.textContent = "Resend in ".concat(left, "s");
+    cooldownTimer = setInterval(function () {
+      left -= 1;
+      if (left <= 0) {
+        clearInterval(cooldownTimer);
+        sendBtn.disabled = false;
+        sendBtn.textContent = 'Resend code';
+      } else {
+        sendBtn.textContent = "Resend in ".concat(left, "s");
+      }
+    }, 1000);
+  }
+  function unlock(verifiedPhone) {
+    phone.readOnly = true;
+    sendBtn.classList.add('hidden');
+    codeWrap.classList.add('hidden');
+    verifiedBadge.classList.remove('hidden');
+    details.classList.remove('hidden');
+    details.querySelectorAll('input, select, textarea, button').forEach(function (el) {
+      el.disabled = false;
+    });
+    if (verifiedPhone) phone.value = verifiedPhone.replace(/^\+91/, ''); // "+91" is shown as a prefix
+    msg.textContent = '';
+  }
+  sendBtn === null || sendBtn === void 0 || sendBtn.addEventListener('click', /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
+    var data, _t;
+    return _regenerator().w(function (_context) {
+      while (1) switch (_context.p = _context.n) {
+        case 0:
+          sendBtn.disabled = true;
+          _context.p = 1;
+          _context.n = 2;
+          return post(root.dataset.sendUrl, {
+            phone: phone.value
+          });
+        case 2:
+          data = _context.v;
+          codeWrap.classList.remove('hidden');
+          say(data.message);
+          code.focus();
+          cooldown(data.resend_after || 30);
+          _context.n = 4;
+          break;
+        case 3:
+          _context.p = 3;
+          _t = _context.v;
+          say(_t.message, true);
+          sendBtn.disabled = false;
+        case 4:
+          return _context.a(2);
+      }
+    }, _callee, null, [[1, 3]]);
+  })));
+  verifyBtn === null || verifyBtn === void 0 || verifyBtn.addEventListener('click', /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2() {
+    var data, _t2;
+    return _regenerator().w(function (_context2) {
+      while (1) switch (_context2.p = _context2.n) {
+        case 0:
+          verifyBtn.disabled = true;
+          _context2.p = 1;
+          _context2.n = 2;
+          return post(root.dataset.verifyUrl, {
+            phone: phone.value,
+            code: code.value
+          });
+        case 2:
+          data = _context2.v;
+          unlock(data.phone);
+          _context2.n = 4;
+          break;
+        case 3:
+          _context2.p = 3;
+          _t2 = _context2.v;
+          say(_t2.message, true);
+        case 4:
+          _context2.p = 4;
+          verifyBtn.disabled = false;
+          return _context2.f(4);
+        case 5:
+          return _context2.a(2);
+      }
+    }, _callee2, null, [[1, 3, 4, 5]]);
+  })));
+  code === null || code === void 0 || code.addEventListener('input', function () {
+    code.value = code.value.replace(/\D/g, '').slice(0, 6);
+    if (code.value.length === 6) verifyBtn.click();
+  });
+  if (root.dataset.verified === '1') unlock();
+
+  // Plan picker: highlight the selected card.
+  root.querySelectorAll('input[name="membership_plan_id"]').forEach(function (radio) {
+    radio.addEventListener('change', function () {
+      root.querySelectorAll('[data-plan-card]').forEach(function (c) {
+        return c.classList.remove('ring-2', 'ring-volt-400');
+      });
+      radio.closest('[data-plan-card]').classList.add('ring-2', 'ring-volt-400');
+    });
+    if (radio.checked) radio.closest('[data-plan-card]').classList.add('ring-2', 'ring-volt-400');
+  });
+}
+
+/***/ })
+
+}]);

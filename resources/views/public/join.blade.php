@@ -10,7 +10,7 @@
                             <h2 class="text-2xl font-bold">{{ $gym->name }}</h2>
                             <p class="mt-2 text-slate-400">{{ collect([$gym->address, $gym->city])->filter()->implode(', ') }}</p>
                         </div>
-                        <span class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-volt-400 text-ink-950 transition group-hover:translate-x-1" aria-hidden="true">→</span>
+                        <span class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-volt-400 text-on-volt transition group-hover:translate-x-1" aria-hidden="true">→</span>
                     </div>
                 </a>
             @empty

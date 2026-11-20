@@ -22,7 +22,7 @@
         @csrf
 
         <fieldset class="space-y-5">
-            <legend class="mb-4 flex items-center gap-3 text-sm font-semibold text-white"><span class="grid h-6 w-6 place-items-center rounded-full bg-volt-400 text-xs text-ink-950">1</span> Your gym</legend>
+            <legend class="mb-4 flex items-center gap-3 text-sm font-semibold text-white"><span class="grid h-6 w-6 place-items-center rounded-full bg-volt-400 text-xs text-on-volt">1</span> Your gym</legend>
             <div>
                 <label for="gym_name" class="label">Gym name</label>
                 <input id="gym_name" name="gym_name" value="{{ old('gym_name') }}" class="input" autocomplete="organization" placeholder="e.g. Gold Gym Andheri" required autofocus>
@@ -53,7 +53,7 @@
         </fieldset>
 
         <fieldset class="space-y-5 border-t border-ink-700 pt-6">
-            <legend class="mb-4 flex items-center gap-3 text-sm font-semibold text-white"><span class="grid h-6 w-6 place-items-center rounded-full bg-volt-400 text-xs text-ink-950">2</span> Owner account</legend>
+            <legend class="mb-4 flex items-center gap-3 text-sm font-semibold text-white"><span class="grid h-6 w-6 place-items-center rounded-full bg-volt-400 text-xs text-on-volt">2</span> Owner account</legend>
             <div>
                 <label for="name" class="label">Owner name</label>
                 <input id="name" name="name" value="{{ old('name') }}" class="input" autocomplete="name" required>

@@ -7,7 +7,7 @@
         @if ($cities->count() > 1)
             <div class="mt-4 flex flex-wrap justify-center gap-2" data-intro>
                 @foreach ($cities as $city)
-                    <a href="{{ route('gyms', ['q' => $city]) }}" class="badge px-3 py-1.5 text-sm {{ request('q') === $city ? 'bg-volt-400 text-ink-950' : 'bg-ink-800 text-slate-300 hover:text-white' }}">{{ $city }}</a>
+                    <a href="{{ route('gyms', ['q' => $city]) }}" class="badge px-3 py-1.5 text-sm {{ request('q') === $city ? 'bg-volt-400 text-on-volt' : 'bg-ink-800 text-slate-300 hover:text-white' }}">{{ $city }}</a>
                 @endforeach
             </div>
         @endif

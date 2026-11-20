@@ -72,11 +72,11 @@
                             <div data-compare class="relative mt-3 aspect-[3/4] w-full select-none overflow-hidden rounded-2xl bg-ink-850">
                                 <img src="{{ route('media.scan', [$to, $view]) }}" alt="" class="absolute inset-0 h-full w-full object-cover">
                                 <img data-compare-top src="{{ route('media.scan', [$from, $view]) }}" alt="" class="absolute inset-0 h-full w-full object-cover">
-                                <div data-compare-handle class="pointer-events-none absolute inset-y-0 w-0.5 -translate-x-1/2 bg-volt-400 shadow-[0_0_20px_rgba(255,212,0,.7)]">
-                                    <span class="absolute left-1/2 top-1/2 grid h-9 w-9 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-volt-400 text-xs font-bold text-ink-950">⇆</span>
+                                <div data-compare-handle class="pointer-events-none absolute inset-y-0 w-0.5 -translate-x-1/2 bg-volt-400 shadow-[0_0_20px_rgb(var(--c-volt-400)/0.7)]">
+                                    <span class="absolute left-1/2 top-1/2 grid h-9 w-9 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-volt-400 text-xs font-bold text-on-volt">⇆</span>
                                 </div>
                                 <span class="badge absolute left-3 top-3 bg-ink-950/70 text-white">Before</span>
-                                <span class="badge absolute right-3 top-3 bg-volt-400 text-ink-950">After</span>
+                                <span class="badge absolute right-3 top-3 bg-volt-400 text-on-volt">After</span>
                                 <input type="range" min="0" max="100" value="50" class="absolute inset-0 h-full w-full cursor-ew-resize opacity-0" aria-label="Compare {{ $view }} photos, before and after">
                             </div>
                         </div>

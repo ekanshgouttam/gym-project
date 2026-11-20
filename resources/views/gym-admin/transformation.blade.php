@@ -8,7 +8,7 @@
 
     <nav class="mb-4 mt-8 flex flex-wrap gap-2" aria-label="Filter members">
         @foreach (['all' => 'All members', 'due' => 'Due for scan', 'waiting' => 'Up to date', 'no_baseline' => 'No baseline'] as $key => $label)
-            <a href="{{ route('gym-admin.transformation', ['filter' => $key]) }}" class="badge px-3 py-1.5 text-sm {{ $filter === $key ? 'bg-volt-400 text-ink-950' : 'bg-ink-800 text-slate-300 hover:text-white' }}">{{ $label }} <span class="ml-1 opacity-70">{{ $key === 'all' ? $counts->sum() : ($counts[$key] ?? 0) }}</span></a>
+            <a href="{{ route('gym-admin.transformation', ['filter' => $key]) }}" class="badge px-3 py-1.5 text-sm {{ $filter === $key ? 'bg-volt-400 text-on-volt' : 'bg-ink-800 text-slate-300 hover:text-white' }}">{{ $label }} <span class="ml-1 opacity-70">{{ $key === 'all' ? $counts->sum() : ($counts[$key] ?? 0) }}</span></a>
         @endforeach
     </nav>
 

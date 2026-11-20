@@ -13,7 +13,7 @@
                     @if ($gym->logoUrl())
                         <img src="{{ $gym->logoUrl() }}" alt="{{ $gym->name }} logo" class="h-20 w-20 rounded-3xl border border-ink-700 bg-ink-850 object-contain p-2">
                     @else
-                        <span class="grid h-20 w-20 place-items-center rounded-3xl bg-gradient-to-br from-volt-400 to-ember-500 font-display text-2xl font-bold text-ink-950">{{ strtoupper(substr($gym->name, 0, 2)) }}</span>
+                        <span class="grid h-20 w-20 place-items-center rounded-3xl bg-gradient-to-br from-volt-400 to-ember-500 font-display text-2xl font-bold text-on-volt">{{ strtoupper(substr($gym->name, 0, 2)) }}</span>
                     @endif
                     <span class="badge bg-volt-400/15 text-volt-300">On FlexFit</span>
                 </div>
@@ -97,9 +97,9 @@
     @endif
 
     <section class="px-4 pb-24 sm:px-6">
-        <div class="relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-volt-400 px-6 py-16 text-center text-ink-950 sm:px-16" data-reveal>
+        <div class="relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-volt-400 px-6 py-16 text-center text-on-volt sm:px-16" data-reveal>
             <div class="grid-bg absolute inset-0 opacity-40 mix-blend-multiply"></div>
-            <h2 class="relative text-3xl font-bold !text-ink-950 sm:text-5xl">Start your transformation at {{ $gym->name }}.</h2>
+            <h2 class="relative text-3xl font-bold !text-on-volt sm:text-5xl">Start your transformation at {{ $gym->name }}.</h2>
             <a href="{{ $gym->joinUrl() }}" class="btn relative mt-8 bg-ink-950 px-8 py-3.5 text-base text-white hover:bg-ink-800">Join now</a>
         </div>
     </section>

@@ -14,7 +14,7 @@
     {{ $head ?? '' }}
 </head>
 <body class="overflow-x-hidden">
-<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-volt-400 focus:px-4 focus:py-2 focus:text-ink-950">Skip to content</a>
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-volt-400 focus:px-4 focus:py-2 focus:text-on-volt">Skip to content</a>
 
 <header class="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-ink-950/70 backdrop-blur-xl">
     <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">

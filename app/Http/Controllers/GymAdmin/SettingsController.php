@@ -25,7 +25,6 @@ class SettingsController extends Controller
             'phone' => ['nullable', 'string', 'max:20'],
             'address' => ['nullable', 'string', 'max:255'],
             'city' => ['nullable', 'string', 'max:100'],
-            'logo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
             'opening_hours' => ['nullable', 'string', 'max:255'],
             'about' => ['nullable', 'string', 'max:1000'],
             'reminder_days' => ['array'],
@@ -59,16 +58,6 @@ class SettingsController extends Controller
         if ($data['name'] !== $gym->name) {
             $fill['slug'] = Gym::uniqueSlug($data['name'], $gym->id); // public page URL follows the name; QR join link does not change
         }
-        if ($request->hasFile('logo')) {
-            $old = $gym->logo_path;
-            $fill['logo_path'] = $images->storeLogo($request->file('logo'));
-            $images->delete($old);
-        }
-        if ($request->boolean('remove_logo') && ! $request->hasFile('logo')) {
-            $images->delete($gym->logo_path);
-            $fill['logo_path'] = null;
-        }
-
         $fill['settings']['site_media'] = $this->siteMedia($request, $gym, $images);
         $gym->update($fill);
 

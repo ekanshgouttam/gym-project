@@ -103,16 +103,20 @@ function tiltCards() {
 }
 
 /* ---------- Charts ---------- */
-const chartBase = {
-    chart: { toolbar: { show: false }, foreColor: '#94a3b8', fontFamily: 'Inter, sans-serif', zoom: { enabled: false } },
-    grid: { borderColor: '#262E3B', strokeDashArray: 4 },
-    tooltip: { theme: 'dark' },
-    dataLabels: { enabled: false },
-    legend: { labels: { colors: '#cbd5e1' } },
-};
-const palette = ['#FFD400', '#DF6826', '#38bdf8', '#f472b6'];
+// Theme colours come from the CSS variables a gym's branding sets (see tailwind.config.js).
+const themeColor = (name) => `#${getComputedStyle(document.documentElement).getPropertyValue(`--c-${name}`).trim().split(/\s+/)
+    .map((v) => Number(v).toString(16).padStart(2, '0')).join('')}`;
 
 function charts() {
+    const chartBase = {
+        chart: { toolbar: { show: false }, foreColor: themeColor('slate-400'), fontFamily: 'Inter, sans-serif', zoom: { enabled: false } },
+        grid: { borderColor: themeColor('ink-700'), strokeDashArray: 4 },
+        tooltip: { theme: document.documentElement.classList.contains('theme-light') ? 'light' : 'dark' },
+        dataLabels: { enabled: false },
+        legend: { labels: { colors: themeColor('slate-300') } },
+    };
+    const palette = [themeColor('volt-400'), themeColor('ember-500'), themeColor('sky-400'), themeColor('fuchsia-400')];
+
     document.querySelectorAll('[data-chart]').forEach((el) => {
         const data = JSON.parse(el.dataset.series || '{}');
         const type = el.dataset.chart;
@@ -125,7 +129,7 @@ function charts() {
                 series: [{ name: 'New sign-ups', data: data.values || [] }],
                 xaxis: { categories: data.labels || [], axisBorder: { show: false }, axisTicks: { show: false } },
                 yaxis: { min: 0, forceNiceScale: true, labels: { formatter: (v) => Math.round(v) } },
-                colors: ['#FFD400'],
+                colors: [palette[0]],
                 stroke: { curve: 'smooth', width: 2 },
                 fill: { type: 'gradient', gradient: { opacityFrom: 0.35, opacityTo: 0, stops: [0, 100] } },
             }).render();
@@ -134,7 +138,7 @@ function charts() {
 
         // Generic line/area: { labels, series: [{name, data}], unit, target }
         const unit = data.unit ? ` ${data.unit}` : '';
-        const annotations = data.target ? { yaxis: [{ y: data.target, borderColor: '#DF6826', strokeDashArray: 6, label: { text: `Target ${data.target}${unit}`, style: { background: '#DF6826', color: '#080B11' } } }] } : {};
+        const annotations = data.target ? { yaxis: [{ y: data.target, borderColor: palette[1], strokeDashArray: 6, label: { text: `Target ${data.target}${unit}`, style: { background: palette[1], color: themeColor('on-ember') } } }] } : {};
         new ApexCharts(el, {
             ...chartBase,
             chart: { ...chartBase.chart, type: type === 'area' ? 'area' : 'line', height: Number(el.dataset.height) || 280, animations },
@@ -146,7 +150,7 @@ function charts() {
             markers: { size: 3, strokeWidth: 0 },
             fill: type === 'area' ? { type: 'gradient', gradient: { opacityFrom: 0.3, opacityTo: 0, stops: [0, 100] } } : { opacity: 1 },
             annotations,
-            noData: { text: 'No data yet', style: { color: '#64748b' } },
+            noData: { text: 'No data yet', style: { color: themeColor('slate-500') } },
         }).render();
     });
 }
@@ -227,7 +231,7 @@ function payments() {
                     name: order.name,
                     description: order.description,
                     prefill: order.prefill,
-                    theme: { color: '#FFD400' },
+                    theme: { color: themeColor('volt-400') },
                     handler: async (response) => {
                         const v = await fetch(btn.dataset.verify, {
                             method: 'POST',
@@ -352,7 +356,7 @@ function marketing() {
                 const on = b.dataset.billing === cycle;
                 b.setAttribute('aria-pressed', on ? 'true' : 'false');
                 b.classList.toggle('bg-volt-400', on);
-                b.classList.toggle('text-ink-950', on);
+                b.classList.toggle('text-on-volt', on);
                 b.classList.toggle('text-slate-300', !on);
             });
             document.querySelectorAll('[data-price], [data-price-note]').forEach((el) => {
@@ -372,7 +376,7 @@ function marketing() {
                 const on = t.dataset.tab === name;
                 t.setAttribute('aria-selected', on ? 'true' : 'false');
                 t.classList.toggle('bg-volt-400', on);
-                t.classList.toggle('text-ink-950', on);
+                t.classList.toggle('text-on-volt', on);
                 t.classList.toggle('text-slate-300', !on);
             });
             root.querySelectorAll('[data-panel]').forEach((p) => {

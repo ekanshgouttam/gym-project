@@ -1,9 +1,9 @@
 @props(['plan', 'cta' => null])
 {{-- Interactive pricing card: pointer tilt + spotlight that follows the cursor. --}}
 <article data-tilt class="group relative flex flex-col overflow-hidden rounded-3xl border p-7 transition-colors {{ $plan->is_featured ? 'border-volt-400/60 bg-ink-850 shadow-glow' : 'border-ink-700 bg-ink-900/80 hover:border-ink-600' }}">
-    <div class="pointer-events-none absolute inset-0 opacity-0 transition group-hover:opacity-100" style="background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 0%), rgba(255,212,0,.12), transparent 40%);"></div>
+    <div class="pointer-events-none absolute inset-0 opacity-0 transition group-hover:opacity-100" style="background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 0%), rgb(var(--c-volt-400) / .12), transparent 40%);"></div>
     @if ($plan->is_featured)
-        <span class="badge absolute right-5 top-5 bg-volt-400 text-ink-950">Most popular</span>
+        <span class="badge absolute right-5 top-5 bg-volt-400 text-on-volt">Most popular</span>
     @endif
     <p class="text-sm font-medium uppercase tracking-widest text-slate-400">{{ $plan->durationLabel() }}</p>
     <h3 class="mt-2 text-2xl font-bold">{{ $plan->name }}</h3>

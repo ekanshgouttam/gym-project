@@ -119,6 +119,7 @@ class Navigation
                 ],
                 'Gym' => [
                     self::item('Reports', 'gym-admin.reports', 'chart'),
+                    self::item('Branding', 'gym-admin.branding', 'spark'),
                     self::item('Settings', 'gym-admin.settings', 'cog'),
                     self::item('FlexFit support', 'manage.support.index', 'life', 'manage.support.*'),
                 ],

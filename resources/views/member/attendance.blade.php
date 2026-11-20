@@ -26,7 +26,7 @@
                         $date = $month->copy()->day($day);
                         $visited = isset($visitDays[$day]);
                     @endphp
-                    <div class="grid aspect-square place-items-center rounded-lg text-sm {{ $visited ? 'bg-volt-400 font-semibold text-ink-950' : ($date->isToday() ? 'border border-volt-400/50 text-white' : ($date->isFuture() ? 'text-slate-700' : 'bg-ink-850 text-slate-400')) }}" @if($visited) title="Visited" @endif>{{ $day }}</div>
+                    <div class="grid aspect-square place-items-center rounded-lg text-sm {{ $visited ? 'bg-volt-400 font-semibold text-on-volt' : ($date->isToday() ? 'border border-volt-400/50 text-white' : ($date->isFuture() ? 'text-slate-700' : 'bg-ink-850 text-slate-400')) }}" @if($visited) title="Visited" @endif>{{ $day }}</div>
                 @endfor
             </div>
             <p class="mt-4 flex items-center gap-2 text-xs text-slate-500"><span class="h-3 w-3 rounded bg-volt-400"></span> Day with a check-in</p>

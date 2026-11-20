@@ -12,7 +12,7 @@
             <div class="card p-5" data-tilt>
                 <div class="flex items-center gap-4">
                     @if ($t->avatarUrl())<img src="{{ $t->avatarUrl() }}" alt="" class="h-14 w-14 rounded-2xl object-cover">
-                    @else<span class="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-volt-400 to-ember-500 font-display text-lg font-bold text-ink-950">{{ $t->initials() }}</span>@endif
+                    @else<span class="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-volt-400 to-ember-500 font-display text-lg font-bold text-on-volt">{{ $t->initials() }}</span>@endif
                     <div class="min-w-0">
                         <p class="truncate font-semibold text-white">{{ $t->name }}</p>
                         <p class="truncate text-sm text-slate-400">{{ optional($t->trainerProfile)->specialty ?: 'No specialty set' }}</p>

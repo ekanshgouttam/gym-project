@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Support\Branding;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
@@ -74,7 +75,7 @@ class AuthController extends Controller
 
     public static function userPayload(User $user): array
     {
-        $user->loadMissing('gym:id,name', 'memberProfile:id,user_id,member_code');
+        $user->loadMissing('gym', 'memberProfile:id,user_id,member_code');
 
         return [
             'id' => $user->id,
@@ -83,7 +84,7 @@ class AuthController extends Controller
             'phone' => $user->phone,
             'role' => $user->primaryRole(),
             'member_code' => optional($user->memberProfile)->member_code,
-            'gym' => $user->gym ? ['id' => $user->gym->id, 'name' => $user->gym->name] : null,
+            'gym' => $user->gym ? ['id' => $user->gym->id, 'name' => $user->gym->name, 'branding' => Branding::forApi($user->gym)] : null,
         ];
     }
 }

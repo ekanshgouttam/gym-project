@@ -138,7 +138,7 @@
                                 <div class="rounded-lg bg-ink-850 px-2 py-1.5 text-[10px] text-slate-300">{{ $row }}</div>
                             @endforeach
                         </div>
-                        <div class="mt-3 rounded-lg bg-volt-400 py-1.5 text-center text-[10px] font-semibold text-ink-950">AI Body Scanner</div>
+                        <div class="mt-3 rounded-lg bg-volt-400 py-1.5 text-center text-[10px] font-semibold text-on-volt">AI Body Scanner</div>
                     </div>
                     <p class="mt-6 text-sm text-slate-400">Profile, membership, attendance, workouts, diet, payments, notifications and AI scans.</p>
                 </article>
@@ -175,8 +175,8 @@
                         </svg>
                     </div>
                     <span class="badge absolute left-3 top-3 bg-ink-950/80 text-white">Baseline</span>
-                    <span class="badge absolute right-3 top-3 bg-volt-400 text-ink-950">Month 4</span>
-                    <span data-ba-handle class="pointer-events-none absolute inset-y-0 w-0.5 -translate-x-1/2 bg-white/80" style="left: 50%"><span class="absolute top-1/2 left-1/2 grid h-9 w-9 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white text-xs font-bold text-ink-950">⇆</span></span>
+                    <span class="badge absolute right-3 top-3 bg-volt-400 text-on-volt">Month 4</span>
+                    <span data-ba-handle class="pointer-events-none absolute inset-y-0 w-0.5 -translate-x-1/2 bg-white/80" style="left: 50%"><span class="absolute top-1/2 left-1/2 grid h-9 w-9 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white text-xs font-bold text-on-volt">⇆</span></span>
                     <input type="range" min="0" max="100" value="50" class="absolute inset-0 h-full w-full cursor-ew-resize opacity-0" aria-label="Drag to compare baseline and month 4 (illustration)">
                 </div>
                 <p class="mt-3 text-center text-xs text-slate-500">Illustration. Drag to compare.</p>
@@ -228,14 +228,14 @@
 
     {{-- CTA --}}
     <section class="px-4 pb-24 sm:px-6">
-        <div class="relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-volt-400 px-6 py-20 text-center text-ink-950 sm:px-16" data-reveal>
+        <div class="relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-volt-400 px-6 py-20 text-center text-on-volt sm:px-16" data-reveal>
             <div class="grid-bg absolute inset-0 opacity-40 mix-blend-multiply"></div>
             <div class="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-ember-500/60 blur-3xl" aria-hidden="true"></div>
-            <h2 class="relative text-4xl font-bold !text-ink-950 sm:text-6xl">Your gym, live in two minutes.</h2>
+            <h2 class="relative text-4xl font-bold !text-on-volt sm:text-6xl">Your gym, live in two minutes.</h2>
             <p class="relative mx-auto mt-4 max-w-xl text-lg text-ink-800">Register, print your QR code, and your first members can join today.</p>
             <div class="relative mt-10 flex flex-col justify-center gap-3 sm:flex-row">
                 <a href="{{ route('register') }}" class="btn bg-ink-950 px-8 py-3.5 text-base text-white hover:bg-ink-800">Register your gym</a>
-                <a href="{{ route('demo') }}" class="btn border border-ink-950/30 px-8 py-3.5 text-base text-ink-950 hover:bg-ink-950/10">Book a demo</a>
+                <a href="{{ route('demo') }}" class="btn border border-ink-950/30 px-8 py-3.5 text-base text-on-volt hover:bg-ink-950/10">Book a demo</a>
             </div>
         </div>
     </section>

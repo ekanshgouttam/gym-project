@@ -17,7 +17,7 @@
                         ['Pricing for your size', 'Which plan fits, and how the free trial works.'],
                     ] as [$t, $d])
                         <li class="flex gap-4">
-                            <span class="mt-1 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-volt-400 text-xs font-bold text-ink-950">✓</span>
+                            <span class="mt-1 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-volt-400 text-xs font-bold text-on-volt">✓</span>
                             <div><p class="font-semibold text-white">{{ $t }}</p><p class="text-sm text-slate-400">{{ $d }}</p></div>
                         </li>
                     @endforeach
@@ -27,7 +27,7 @@
             <div data-intro>
                 @if (session('status'))
                     <div class="card p-8 text-center" role="status">
-                        <span class="mx-auto grid h-14 w-14 place-items-center rounded-full bg-volt-400 text-2xl text-ink-950">✓</span>
+                        <span class="mx-auto grid h-14 w-14 place-items-center rounded-full bg-volt-400 text-2xl text-on-volt">✓</span>
                         <h2 class="mt-5 text-2xl font-bold">Request received</h2>
                         <p class="mt-2 text-slate-400">{{ session('status') }}</p>
                         <a href="{{ route('register') }}" class="btn-ghost mt-6">Or start your free trial now</a>

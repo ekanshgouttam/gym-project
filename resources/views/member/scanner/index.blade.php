@@ -9,7 +9,7 @@
                         <h2 class="text-2xl font-bold">{{ $e['first_scan'] ? 'Baseline body scan' : 'Monthly body scan' }}</h2>
                         <p class="mt-1 text-sm text-slate-400">Front, side and back photos. The AI describes visible posture, proportions and shape, and compares them with your earlier scans.</p>
                     </div>
-                    <span class="badge {{ $e['eligible'] ? 'bg-volt-400 text-ink-950' : 'bg-ink-700 text-slate-300' }}">{{ $e['eligible'] ? 'Upload open' : 'Upload locked' }}</span>
+                    <span class="badge {{ $e['eligible'] ? 'bg-volt-400 text-on-volt' : 'bg-ink-700 text-slate-300' }}">{{ $e['eligible'] ? 'Upload open' : 'Upload locked' }}</span>
                 </div>
 
                 {{-- Eligibility / countdown --}}

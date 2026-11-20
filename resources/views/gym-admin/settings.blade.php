@@ -5,18 +5,7 @@
         <section class="card space-y-5 p-6" data-intro>
             <h2 class="text-base font-semibold">Gym profile</h2>
             <p class="text-sm text-slate-400">Shown on your <a href="{{ route('gyms.show', $gym) }}" target="_blank" rel="noopener" class="text-volt-400">public gym page</a> and member sign-up page.</p>
-            <div class="flex items-center gap-4">
-                <div class="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-ink-600 bg-ink-850">
-                    @if ($gym->logoUrl())<img id="logo-preview" src="{{ $gym->logoUrl() }}" alt="" class="h-full w-full object-contain p-1">
-                    @else<span data-preview-placeholder class="absolute inset-0 grid place-items-center text-xs text-slate-500">Logo</span><img id="logo-preview" alt="" class="hidden h-full w-full object-contain p-1">@endif
-                </div>
-                <div class="min-w-0 flex-1">
-                    <label for="logo" class="label">Logo</label>
-                    <input id="logo" name="logo" type="file" accept="image/jpeg,image/png,image/webp" data-preview="#logo-preview" class="block w-full text-sm text-slate-400 file:mr-3 file:rounded-lg file:border-0 file:bg-ink-700 file:px-3 file:py-2 file:text-sm file:text-white">
-                    @error('logo')<p class="field-error">{{ $message }}</p>@enderror
-                    @if ($gym->logo_path)<label class="mt-2 flex items-center gap-2 text-xs text-slate-400"><input type="checkbox" name="remove_logo" value="1" class="rounded border-ink-600 bg-ink-850 text-volt-500"> Remove logo</label>@endif
-                </div>
-            </div>
+            <p class="text-sm text-slate-400">Logo, colours and theme are on the <a href="{{ route('gym-admin.branding') }}" class="text-volt-400">Branding</a> page.</p>
             <div class="grid gap-5 sm:grid-cols-2">
                 <div class="sm:col-span-2"><label for="name" class="label">Gym name</label><input id="name" name="name" value="{{ old('name', $gym->name) }}" class="input" required>@error('name')<p class="field-error">{{ $message }}</p>@enderror</div>
                 <div><label for="phone" class="label">Phone</label><input id="phone" name="phone" value="{{ old('phone', $gym->phone) }}" class="input"></div>

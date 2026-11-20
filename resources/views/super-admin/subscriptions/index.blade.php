@@ -39,9 +39,9 @@
     @endif
 
     <nav class="mb-4 mt-8 flex flex-wrap gap-2" aria-label="Filter subscriptions">
-        <a href="{{ route('super-admin.subscriptions.index') }}" class="badge px-3 py-1.5 text-sm {{ ! $status ? 'bg-volt-400 text-ink-950' : 'bg-ink-800 text-slate-300 hover:text-white' }}">All <span class="ml-1 opacity-70">{{ $counts->sum() }}</span></a>
+        <a href="{{ route('super-admin.subscriptions.index') }}" class="badge px-3 py-1.5 text-sm {{ ! $status ? 'bg-volt-400 text-on-volt' : 'bg-ink-800 text-slate-300 hover:text-white' }}">All <span class="ml-1 opacity-70">{{ $counts->sum() }}</span></a>
         @foreach (\App\Models\GymSubscription::STATUSES as $key => $label)
-            <a href="{{ route('super-admin.subscriptions.index', ['status' => $key]) }}" class="badge px-3 py-1.5 text-sm {{ $status === $key ? 'bg-volt-400 text-ink-950' : 'bg-ink-800 text-slate-300 hover:text-white' }}">{{ $label }} <span class="ml-1 opacity-70">{{ $counts[$key] ?? 0 }}</span></a>
+            <a href="{{ route('super-admin.subscriptions.index', ['status' => $key]) }}" class="badge px-3 py-1.5 text-sm {{ $status === $key ? 'bg-volt-400 text-on-volt' : 'bg-ink-800 text-slate-300 hover:text-white' }}">{{ $label }} <span class="ml-1 opacity-70">{{ $counts[$key] ?? 0 }}</span></a>
         @endforeach
     </nav>
 

@@ -5,7 +5,7 @@
             @php
                 $n = $key === 'unresolved' ? ($counts['open'] ?? 0) + ($counts['in_progress'] ?? 0) : ($key === 'all' ? $counts->sum() : ($counts[$key] ?? 0));
             @endphp
-            <a href="{{ route('super-admin.support.index', ['status' => $key]) }}" class="badge px-3 py-1.5 text-sm {{ $status === $key ? 'bg-volt-400 text-ink-950' : 'bg-ink-800 text-slate-300 hover:text-white' }}">{{ $label }} <span class="ml-1 opacity-70">{{ $n }}</span></a>
+            <a href="{{ route('super-admin.support.index', ['status' => $key]) }}" class="badge px-3 py-1.5 text-sm {{ $status === $key ? 'bg-volt-400 text-on-volt' : 'bg-ink-800 text-slate-300 hover:text-white' }}">{{ $label }} <span class="ml-1 opacity-70">{{ $n }}</span></a>
         @endforeach
     </nav>
 

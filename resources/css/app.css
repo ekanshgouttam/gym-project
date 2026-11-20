@@ -6,12 +6,12 @@
     html { -webkit-tap-highlight-color: transparent; color-scheme: dark; }
     body { @apply bg-ink-950 text-slate-200 font-sans antialiased; }
     h1, h2, h3, h4 { @apply font-display tracking-tight text-white; }
-    ::selection { @apply bg-volt-400 text-ink-950; }
+    ::selection { @apply bg-volt-400 text-on-volt; }
 }
 
 @layer components {
     .btn { @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-volt-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 disabled:opacity-50; }
-    .btn-primary { @apply btn bg-volt-400 text-ink-950 hover:bg-volt-300 shadow-glow; }
+    .btn-primary { @apply btn bg-volt-400 text-on-volt hover:bg-volt-300 shadow-glow; }
     .btn-ghost { @apply btn border border-ink-600 text-slate-200 hover:border-slate-400 hover:text-white; }
     .btn-danger { @apply btn border border-rose-500/40 text-rose-300 hover:bg-rose-500/10; }
 

@@ -10,6 +10,7 @@ use App\Models\OtpVerification;
 use App\Models\User;
 use App\Services\MemberRegistration;
 use App\Services\OtpService;
+use App\Support\Branding;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
@@ -27,7 +28,7 @@ class JoinController extends Controller
         $gym = $this->gym($token);
 
         return response()->json([
-            'gym' => ['id' => $gym->id, 'name' => $gym->name, 'address' => $gym->address, 'city' => $gym->city],
+            'gym' => ['id' => $gym->id, 'name' => $gym->name, 'address' => $gym->address, 'city' => $gym->city, 'branding' => Branding::forApi($gym)],
             'plans' => MembershipPlan::availableAt($gym->id)->get()->map(function (MembershipPlan $plan) {
                 return [
                     'id' => $plan->id,

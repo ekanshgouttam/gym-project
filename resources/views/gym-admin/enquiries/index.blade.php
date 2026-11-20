@@ -12,7 +12,7 @@
                 <nav class="flex flex-wrap gap-2" aria-label="Filter enquiries">
                     @php $open = ($counts['new'] ?? 0) + ($counts['follow_up'] ?? 0) + ($counts['trial'] ?? 0); @endphp
                     @foreach (['open' => ['Open', $open], 'due' => ['Due', $due], 'converted' => ['Joined', $counts['converted'] ?? 0], 'lost' => ['Lost', $counts['lost'] ?? 0], 'all' => ['All', $counts->sum()]] as $key => [$label, $n])
-                        <a href="{{ route('gym-admin.enquiries.index', ['view' => $key]) }}" class="badge px-3 py-1.5 text-sm {{ $view === $key ? 'bg-volt-400 text-ink-950' : 'bg-ink-800 text-slate-300 hover:text-white' }}">{{ $label }} <span class="ml-1 opacity-70">{{ $n }}</span></a>
+                        <a href="{{ route('gym-admin.enquiries.index', ['view' => $key]) }}" class="badge px-3 py-1.5 text-sm {{ $view === $key ? 'bg-volt-400 text-on-volt' : 'bg-ink-800 text-slate-300 hover:text-white' }}">{{ $label }} <span class="ml-1 opacity-70">{{ $n }}</span></a>
                     @endforeach
                 </nav>
                 <form method="GET" class="flex gap-2"><input type="hidden" name="view" value="{{ $view }}"><input type="search" name="q" value="{{ request('q') }}" placeholder="Search name or phone" class="input w-52 py-2" aria-label="Search enquiries"></form>

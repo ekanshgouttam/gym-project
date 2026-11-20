@@ -7,7 +7,7 @@
         <nav class="flex flex-wrap gap-2" aria-label="Filter gyms">
             @foreach (['' => 'All', 'active' => 'Active', 'inactive' => 'Inactive'] as $key => $label)
                 <a href="{{ route('manage.gyms.index', array_filter(['filter' => $key, 'q' => request('q')])) }}"
-                   class="badge px-3 py-1.5 text-sm {{ (string) $filter === $key ? 'bg-volt-400 text-ink-950' : 'bg-ink-800 text-slate-300 hover:text-white' }}">
+                   class="badge px-3 py-1.5 text-sm {{ (string) $filter === $key ? 'bg-volt-400 text-on-volt' : 'bg-ink-800 text-slate-300 hover:text-white' }}">
                     {{ $label }} <span class="ml-1 opacity-70">{{ $counts[$key ?: 'all'] }}</span>
                 </a>
             @endforeach

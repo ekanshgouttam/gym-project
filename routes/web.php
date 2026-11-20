@@ -147,6 +147,8 @@ Route::middleware(['auth', 'active'])->group(function () {
 
         Route::get('settings', [GymAdmin\SettingsController::class, 'edit'])->name('settings');
         Route::put('settings', [GymAdmin\SettingsController::class, 'update'])->name('settings.update');
+        Route::get('branding', [GymAdmin\BrandingController::class, 'edit'])->name('branding');
+        Route::put('branding', [GymAdmin\BrandingController::class, 'update'])->name('branding.update');
     });
 
     /* Workout & diet plan builder — gym owners and trainers */

@@ -12,7 +12,7 @@
 
     <nav class="mb-4 mt-8 flex flex-wrap gap-2" aria-label="Sections">
         @foreach (['due' => 'Fees due', 'plans' => 'Membership plans'] as $key => $label)
-            <a href="{{ route('gym-admin.fees.index', ['tab' => $key]) }}" class="badge px-3 py-1.5 text-sm {{ $tab === $key ? 'bg-volt-400 text-ink-950' : 'bg-ink-800 text-slate-300 hover:text-white' }}">{{ $label }}</a>
+            <a href="{{ route('gym-admin.fees.index', ['tab' => $key]) }}" class="badge px-3 py-1.5 text-sm {{ $tab === $key ? 'bg-volt-400 text-on-volt' : 'bg-ink-800 text-slate-300 hover:text-white' }}">{{ $label }}</a>
         @endforeach
     </nav>
 

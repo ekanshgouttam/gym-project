@@ -1,7 +1,7 @@
 <x-app-layout title="Membership approvals">
     <nav class="mb-6 flex flex-wrap gap-2" aria-label="Filter by status">
         @foreach (['pending' => 'Pending', 'active' => 'Active', 'rejected' => 'Rejected', 'cancelled' => 'Cancelled'] as $value => $label)
-            <a href="{{ route('manage.memberships.index', ['status' => $value]) }}" class="rounded-full px-4 py-1.5 text-sm {{ $status === $value ? 'bg-volt-400 text-ink-950 font-semibold' : 'border border-ink-600 text-slate-300 hover:border-slate-400' }}">{{ $label }}</a>
+            <a href="{{ route('manage.memberships.index', ['status' => $value]) }}" class="rounded-full px-4 py-1.5 text-sm {{ $status === $value ? 'bg-volt-400 text-on-volt font-semibold' : 'border border-ink-600 text-slate-300 hover:border-slate-400' }}">{{ $label }}</a>
         @endforeach
     </nav>
 

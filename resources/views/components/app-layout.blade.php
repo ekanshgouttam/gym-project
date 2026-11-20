@@ -1,17 +1,33 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
-<head>
-    @include('partials.head')
-</head>
-<body class="min-h-full">
 @php
     $user = auth()->user();
     $navGroups = \App\Support\Navigation::for($user);
+    // Everyone in a gym (owner, trainers, members) sees that gym's branding; super admins see FlexFit's.
+    $brandGym = $user->gym;
+    $brand = \App\Support\Branding::for($brandGym);
 @endphp
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full {{ $brand['theme'] === 'light' ? 'theme-light' : '' }}" @if ($brandGym) style="{{ \App\Support\Branding::cssVariables($brand) }}" @endif>
+<head>
+    @include('partials.head', ['themeColor' => $brand['theme'] === 'light' ? '#F3F5F8' : '#080B11'])
+</head>
+<body class="min-h-full">
 <div class="flex min-h-screen">
     {{-- Sidebar --}}
     <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col overflow-y-auto border-r border-ink-700 bg-ink-900 lg:sticky lg:top-0 lg:flex lg:h-screen">
-        <div class="flex h-16 shrink-0 items-center px-5"><x-logo /></div>
+        <div class="flex h-16 shrink-0 items-center px-5">
+            @if ($brandGym)
+                <a href="{{ route('dashboard') }}" class="flex min-w-0 items-center gap-2.5 font-display text-lg font-bold text-white">
+                    @if ($brandGym->logoUrl())
+                        <img src="{{ $brandGym->logoUrl() }}" alt="" class="h-9 w-9 shrink-0 rounded-xl object-contain">
+                    @else
+                        <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-volt-400 text-on-volt">{{ strtoupper(substr($brandGym->name, 0, 1)) }}</span>
+                    @endif
+                    <span class="truncate">{{ $brandGym->name }}</span>
+                </a>
+            @else
+                <x-logo />
+            @endif
+        </div>
         <nav class="flex-1 space-y-5 px-3 py-4" aria-label="Main">
             @foreach ($navGroups as $group => $items)
                 <div class="space-y-1">
@@ -20,7 +36,7 @@
                         <a href="{{ $item['route'] }}" class="nav-link {{ $item['active'] ? 'active' : '' }}" @if($item['active']) aria-current="page" @endif>
                             <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ $item['icon'] }}"/></svg>
                             <span class="flex-1">{{ $item['label'] }}</span>
-                            @if ($item['badge'])<span class="badge bg-volt-400 text-ink-950">{{ $item['badge'] }}</span>@endif
+                            @if ($item['badge'])<span class="badge bg-volt-400 text-on-volt">{{ $item['badge'] }}</span>@endif
                         </a>
                     @endforeach
                 </div>

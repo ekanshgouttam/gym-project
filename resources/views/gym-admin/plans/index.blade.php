@@ -6,7 +6,7 @@
     <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
         <nav class="flex gap-2" aria-label="Plan type">
             @foreach (['workout' => 'Workout plans', 'diet' => 'Diet plans'] as $k => $l)
-                <a href="{{ route('gym-admin.plans.index', ['kind' => $k]) }}" class="badge px-3 py-1.5 text-sm {{ $kind === $k ? 'bg-volt-400 text-ink-950' : 'bg-ink-800 text-slate-300 hover:text-white' }}">{{ $l }}</a>
+                <a href="{{ route('gym-admin.plans.index', ['kind' => $k]) }}" class="badge px-3 py-1.5 text-sm {{ $kind === $k ? 'bg-volt-400 text-on-volt' : 'bg-ink-800 text-slate-300 hover:text-white' }}">{{ $l }}</a>
             @endforeach
         </nav>
         <form method="GET" class="flex flex-wrap items-center gap-2">

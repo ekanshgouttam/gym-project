@@ -30,7 +30,7 @@
 
             {{-- Step 1: mobile + OTP --}}
             <section class="card p-5 sm:p-6" data-intro>
-                <h2 class="flex items-center gap-3 text-lg font-semibold"><span class="grid h-7 w-7 place-items-center rounded-full bg-volt-400 text-sm text-ink-950">1</span> Verify your mobile</h2>
+                <h2 class="flex items-center gap-3 text-lg font-semibold"><span class="grid h-7 w-7 place-items-center rounded-full bg-volt-400 text-sm text-on-volt">1</span> Verify your mobile</h2>
                 <div class="mt-5">
                     <label for="phone" class="label">Mobile number</label>
                     <div class="flex gap-2">
@@ -54,7 +54,7 @@
             <div data-join-details class="hidden space-y-8">
                 {{-- Step 2: About you --}}
                 <section class="card space-y-5 p-5 sm:p-6">
-                    <h2 class="flex items-center gap-3 text-lg font-semibold"><span class="grid h-7 w-7 place-items-center rounded-full bg-volt-400 text-sm text-ink-950">2</span> About you</h2>
+                    <h2 class="flex items-center gap-3 text-lg font-semibold"><span class="grid h-7 w-7 place-items-center rounded-full bg-volt-400 text-sm text-on-volt">2</span> About you</h2>
 
                     <div class="flex items-center gap-4">
                         <div class="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border border-ink-600 bg-ink-850">
@@ -120,7 +120,7 @@
 
                 {{-- Step 3: Emergency contact --}}
                 <section class="card space-y-5 p-5 sm:p-6">
-                    <h2 class="flex items-center gap-3 text-lg font-semibold"><span class="grid h-7 w-7 place-items-center rounded-full bg-volt-400 text-sm text-ink-950">3</span> Emergency contact</h2>
+                    <h2 class="flex items-center gap-3 text-lg font-semibold"><span class="grid h-7 w-7 place-items-center rounded-full bg-volt-400 text-sm text-on-volt">3</span> Emergency contact</h2>
                     <div class="grid gap-4 sm:grid-cols-2">
                         <div>
                             <label for="emergency_contact_name" class="label">Name</label>
@@ -138,7 +138,7 @@
                 {{-- Step 4: Baseline body scan --}}
                 <section class="card space-y-5 p-5 sm:p-6">
                     <div>
-                        <h2 class="flex items-center gap-3 text-lg font-semibold"><span class="grid h-7 w-7 place-items-center rounded-full bg-volt-400 text-sm text-ink-950">4</span> Baseline body scan</h2>
+                        <h2 class="flex items-center gap-3 text-lg font-semibold"><span class="grid h-7 w-7 place-items-center rounded-full bg-volt-400 text-sm text-on-volt">4</span> Baseline body scan</h2>
                         <p class="mt-2 text-sm text-slate-400">Three photos set the starting point for your transformation. Every monthly scan is compared against them. Your height and weight above are saved with this scan.</p>
                     </div>
                     @include('partials.scan-photo-inputs', ['disabled' => true])
@@ -155,7 +155,7 @@
 
                 {{-- Step 5: Plan --}}
                 <section class="card space-y-4 p-5 sm:p-6">
-                    <h2 class="flex items-center gap-3 text-lg font-semibold"><span class="grid h-7 w-7 place-items-center rounded-full bg-volt-400 text-sm text-ink-950">5</span> Membership plan</h2>
+                    <h2 class="flex items-center gap-3 text-lg font-semibold"><span class="grid h-7 w-7 place-items-center rounded-full bg-volt-400 text-sm text-on-volt">5</span> Membership plan</h2>
                     @foreach ($plans as $plan)
                         <label data-plan-card class="flex cursor-pointer items-center justify-between gap-4 rounded-2xl border border-ink-600 bg-ink-850 p-4">
                             <span class="flex items-center gap-3">
@@ -177,7 +177,7 @@
 
                 {{-- Step 6: Account --}}
                 <section class="card space-y-5 p-5 sm:p-6">
-                    <h2 class="flex items-center gap-3 text-lg font-semibold"><span class="grid h-7 w-7 place-items-center rounded-full bg-volt-400 text-sm text-ink-950">6</span> Create a password</h2>
+                    <h2 class="flex items-center gap-3 text-lg font-semibold"><span class="grid h-7 w-7 place-items-center rounded-full bg-volt-400 text-sm text-on-volt">6</span> Create a password</h2>
                     <div class="grid gap-4 sm:grid-cols-2">
                         <div>
                             <label for="password" class="label">Password</label>
