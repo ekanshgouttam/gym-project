@@ -19,7 +19,7 @@ class MemberProfile extends Model
     public const DEFAULT_PREFS = ['membership' => true, 'scans' => true, 'plans' => true, 'promotions' => false];
 
     /** How the member registered. */
-    public const SOURCES = ['qr' => 'QR scan', 'link' => 'Join link', 'manual' => 'Added by staff', 'import' => 'CSV import'];
+    public const SOURCES = ['qr' => 'QR scan', 'link' => 'Join link', 'manual' => 'Added by staff', 'import' => 'CSV import', 'app' => 'Mobile app'];
 
     protected $fillable = [
         'user_id', 'member_code', 'source', 'registered_by', 'trainer_id', 'date_of_birth', 'gender', 'height_cm', 'starting_weight_kg', 'target_weight_kg',
