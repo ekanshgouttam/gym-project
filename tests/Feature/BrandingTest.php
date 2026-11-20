@@ -118,6 +118,11 @@ class BrandingTest extends TestCase
             ->assertJsonPath('user.gym.branding.logo_url', null);
 
         $this->getJson("/api/v1/join/{$this->gym->join_token}")->assertOk()->assertJsonPath('gym.branding.accent', '#F97316');
+
+        $this->getJson('/api/v1/branding')->assertUnauthorized();
+        $this->actingAs($member, 'sanctum')->getJson('/api/v1/branding')->assertOk()
+            ->assertJsonPath('branding.accent', '#F97316')
+            ->assertJsonPath('branding.theme', 'dark');
     }
 
     private function followDashboard(User $user): string

@@ -57,6 +57,11 @@ return [
         'driver' => env('SMS_DRIVER', 'log'),
         'msg91_auth_key' => env('MSG91_AUTH_KEY'),
         'msg91_template_id' => env('MSG91_TEMPLATE_ID'),
+        'smartping_username' => env('SMARTPING_USERNAME'),
+        'smartping_password' => env('SMARTPING_PASSWORD'),
+        'smartping_sender' => env('SMARTPING_SENDER'),
+        // Must match the DLT-registered template exactly; :code is replaced with the OTP.
+        'smartping_message' => env('SMARTPING_MESSAGE', 'Your OTP for verification is :code It is valid for 10 minutes. Do not share this code with anyone. PAM FINCAP'),
     ],
 
 ];

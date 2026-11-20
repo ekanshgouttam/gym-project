@@ -66,6 +66,14 @@ class AuthController extends Controller
         return response()->json(['user' => self::userPayload($request->user())]);
     }
 
+    /** The signed-in user's gym branding, so the app can restyle without logging in again. */
+    public function branding(Request $request)
+    {
+        $gym = $request->user()->gym;
+
+        return response()->json(['branding' => $gym ? Branding::forApi($gym) : null]);
+    }
+
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
