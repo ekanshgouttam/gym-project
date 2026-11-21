@@ -149,6 +149,10 @@ Route::middleware(['auth', 'active'])->group(function () {
         Route::put('settings', [GymAdmin\SettingsController::class, 'update'])->name('settings.update');
         Route::get('branding', [GymAdmin\BrandingController::class, 'edit'])->name('branding');
         Route::put('branding', [GymAdmin\BrandingController::class, 'update'])->name('branding.update');
+
+        Route::get('registrations', [GymAdmin\RegistrationRequestController::class, 'index'])->name('registrations.index');
+        Route::post('registrations/{registration}/approve', [GymAdmin\RegistrationRequestController::class, 'approve'])->name('registrations.approve');
+        Route::post('registrations/{registration}/reject', [GymAdmin\RegistrationRequestController::class, 'reject'])->name('registrations.reject');
     });
 
     /* Workout & diet plan builder — gym owners and trainers */

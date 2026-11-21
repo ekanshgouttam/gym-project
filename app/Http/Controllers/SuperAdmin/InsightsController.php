@@ -45,7 +45,7 @@ class InsightsController extends Controller
                 'active' => $rows->sum('active'),
                 'new' => $rows->sum('new'),
             ],
-            'growth' => PlatformStats::monthly(User::role(Roles::MEMBER), 'users.created_at', 'COUNT(*)'),
+            'growth' => PlatformStats::monthly(User::role(Roles::MEMBER)->where('users.status', '!=', 'applicant'), 'users.created_at', 'COUNT(*)'),
         ]);
     }
 

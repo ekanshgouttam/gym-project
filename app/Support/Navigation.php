@@ -95,6 +95,7 @@ class Navigation
             $gymId = $user->gym_id;
             $pending = \App\Models\Membership::where('status', 'pending')->where('gym_id', $gymId)->count();
             $followUps = \App\Models\Enquiry::where('gym_id', $gymId)->open()->whereDate('next_follow_up_on', '<=', today())->count();
+            $joinRequests = \App\Models\RegistrationRequest::where('gym_id', $gymId)->where('status', 'pending')->count();
 
             return [
                 '' => [
@@ -102,6 +103,7 @@ class Navigation
                 ],
                 'Members' => [
                     self::item('Members', 'manage.users.index', 'users', 'manage.users.*|manage.members.*|manage.scans.*'),
+                    self::item('Registration requests', 'gym-admin.registrations.index', 'check', 'gym-admin.registrations.*', $joinRequests ?: null),
                     self::item('Enquiries', 'gym-admin.enquiries.index', 'inbox', 'gym-admin.enquiries.*', $followUps ?: null),
                     ['label' => 'Registration QR', 'route' => route('manage.gyms.qr', $gymId), 'active' => request()->routeIs('manage.gyms.qr'), 'icon' => self::ICONS['qr'], 'badge' => null],
                     self::item('Attendance', 'gym-admin.attendance.index', 'calendar', 'gym-admin.attendance.*'),

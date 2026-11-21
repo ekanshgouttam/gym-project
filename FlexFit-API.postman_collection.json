@@ -8,6 +8,12 @@
     { "key": "base_url", "value": "https://smartai.morethangiftz.com/api/v1" },
     { "key": "email", "value": "member@gym.test" },
     { "key": "password", "value": "" },
+    { "key": "phone", "value": "9820000020" },
+    { "key": "otp", "value": "" },
+    { "key": "new_name", "value": "Test Member" },
+    { "key": "new_email", "value": "test.member@example.com" },
+    { "key": "new_phone", "value": "" },
+    { "key": "gym_id", "value": "1" },
     { "key": "token", "value": "" }
   ],
   "auth": {
@@ -47,6 +53,108 @@
           ]
         },
         "url": "{{base_url}}/auth/login"
+      }
+    },
+    {
+      "name": "Login with mobile - 1. Send OTP",
+      "request": {
+        "auth": { "type": "noauth" },
+        "method": "POST",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "body": { "mode": "urlencoded", "urlencoded": [{ "key": "phone", "value": "{{phone}}" }] },
+        "url": "{{base_url}}/auth/otp"
+      }
+    },
+    {
+      "name": "Login with mobile - 2. Verify OTP",
+      "event": [{
+        "listen": "test",
+        "script": { "exec": [
+          "const body = pm.response.json();",
+          "if (body.token) { pm.collectionVariables.set('token', body.token); }",
+          "pm.test('logged in', () => pm.expect(body.token).to.be.a('string'));"
+        ] }
+      }],
+      "request": {
+        "auth": { "type": "noauth" },
+        "method": "POST",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            { "key": "phone", "value": "{{phone}}" },
+            { "key": "code", "value": "{{otp}}" },
+            { "key": "device_name", "value": "postman" }
+          ]
+        },
+        "url": "{{base_url}}/auth/otp/verify"
+      }
+    },
+    {
+      "name": "Register - 1. List gyms",
+      "request": {
+        "auth": { "type": "noauth" },
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "url": "{{base_url}}/gyms?q="
+      }
+    },
+    {
+      "name": "Register - 2. Send OTP",
+      "request": {
+        "auth": { "type": "noauth" },
+        "method": "POST",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "body": { "mode": "urlencoded", "urlencoded": [{ "key": "phone", "value": "{{new_phone}}" }] },
+        "url": "{{base_url}}/register/otp"
+      }
+    },
+    {
+      "name": "Register - 3. Create account and send join request",
+      "event": [{
+        "listen": "test",
+        "script": { "exec": [
+          "const body = pm.response.json();",
+          "if (body.token) { pm.collectionVariables.set('token', body.token); }",
+          "pm.test('registered', () => pm.expect(body.token).to.be.a('string'));"
+        ] }
+      }],
+      "request": {
+        "auth": { "type": "noauth" },
+        "method": "POST",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            { "key": "phone", "value": "{{new_phone}}" },
+            { "key": "code", "value": "{{otp}}" },
+            { "key": "name", "value": "{{new_name}}" },
+            { "key": "email", "value": "{{new_email}}" },
+            { "key": "gym_id", "value": "{{gym_id}}" },
+            { "key": "device_name", "value": "postman" },
+            { "key": "password", "value": "", "disabled": true, "description": "Optional: lets them also log in with email" },
+            { "key": "password_confirmation", "value": "", "disabled": true },
+            { "key": "join_token", "value": "", "disabled": true, "description": "Use instead of gym_id when the gym's QR code was scanned" }
+          ]
+        },
+        "url": "{{base_url}}/register"
+      }
+    },
+    {
+      "name": "Registration status",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "url": "{{base_url}}/registration"
+      }
+    },
+    {
+      "name": "Apply to another gym (after rejection)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Accept", "value": "application/json" }],
+        "body": { "mode": "urlencoded", "urlencoded": [{ "key": "gym_id", "value": "{{gym_id}}" }] },
+        "url": "{{base_url}}/registration"
       }
     },
     {

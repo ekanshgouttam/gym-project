@@ -88,6 +88,44 @@ class MobileApiTest extends TestCase
         $this->assertDatabaseCount('personal_access_tokens', 0);
     }
 
+    public function test_member_logs_in_with_mobile_number_and_otp()
+    {
+        $member = User::factory()->create(['gym_id' => $this->gym->id, 'phone' => '+919820012345']);
+        $member->assignRole(Roles::MEMBER);
+
+        // Any common format of the number works.
+        $this->postJson('/api/v1/auth/otp', ['phone' => '098200 12345'])->assertOk();
+        $this->assertNotNull($this->sentCode);
+
+        $this->postJson('/api/v1/auth/otp/verify', ['phone' => '9820012345', 'code' => '000000', 'device_name' => 'Pixel 8'])
+            ->assertStatus(422)->assertJsonValidationErrors('code');
+
+        $token = $this->postJson('/api/v1/auth/otp/verify', ['phone' => '9820012345', 'code' => $this->sentCode, 'device_name' => 'Pixel 8'])
+            ->assertOk()
+            ->assertJsonPath('user.id', $member->id)
+            ->assertJsonPath('user.role', Roles::MEMBER)
+            ->json('token');
+        $this->withToken($token)->getJson('/api/v1/auth/me')->assertOk();
+
+        // A used code cannot log in again.
+        $this->postJson('/api/v1/auth/otp/verify', ['phone' => '9820012345', 'code' => $this->sentCode, 'device_name' => 'x'])->assertStatus(422);
+    }
+
+    public function test_mobile_otp_login_is_only_for_active_members()
+    {
+        $this->postJson('/api/v1/auth/otp', ['phone' => '9820012345'])->assertStatus(422)->assertJsonValidationErrors('phone');
+
+        $trainer = User::factory()->create(['gym_id' => $this->gym->id, 'phone' => '+919820011111']);
+        $trainer->assignRole(Roles::TRAINER);
+        $this->postJson('/api/v1/auth/otp', ['phone' => '9820011111'])->assertStatus(422);
+
+        $suspended = User::factory()->create(['gym_id' => $this->gym->id, 'phone' => '+919820022222', 'status' => 'suspended']);
+        $suspended->assignRole(Roles::MEMBER);
+        $this->postJson('/api/v1/auth/otp', ['phone' => '9820022222'])->assertStatus(422);
+
+        $this->assertNull($this->sentCode);
+    }
+
     public function test_member_registers_from_the_app_after_otp()
     {
         $token = $this->gym->join_token;

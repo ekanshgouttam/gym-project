@@ -47,7 +47,9 @@ class LoginController extends Controller
         if (! $user->isActive()) {
             Auth::logout();
             throw ValidationException::withMessages([
-                'email' => 'Your account has been suspended. Please contact the gym.',
+                'email' => $user->isApplicant()
+                    ? 'Your registration has not been approved by a gym yet. Check its status in the FlexFit app.'
+                    : 'Your account has been suspended. Please contact the gym.',
             ]);
         }
 

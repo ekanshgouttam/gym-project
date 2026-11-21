@@ -57,6 +57,22 @@ class User extends Authenticatable
         return $this->hasMany(Membership::class);
     }
 
+    public function registrationRequests()
+    {
+        return $this->hasMany(RegistrationRequest::class);
+    }
+
+    public function latestRegistration()
+    {
+        return $this->hasOne(RegistrationRequest::class)->latestOfMany();
+    }
+
+    /** Signed up in the app but not yet approved by a gym (or rejected). */
+    public function isApplicant(): bool
+    {
+        return $this->status === 'applicant';
+    }
+
     public function attendances()
     {
         return $this->hasMany(Attendance::class);
